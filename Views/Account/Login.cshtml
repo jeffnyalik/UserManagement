@@ -1,0 +1,56 @@
+﻿@model UserManagement.Models.ViewModels.LoginViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <h3 class="text-info">User Login</h3>
+    <form asp-controller="Account" asp-action="login" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]" role="form">
+        <h4>Login</h4>
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2"></label>
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label asp-for="Password" class="col-md-2"></label>
+            <div class="col-md-10">
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="offset-md-2 col-md-10">
+                <div class="custom-checkbox">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe"/>
+                        @Html.DisplayNameFor(m =>m.RememberMe)
+                    </label>
+                </div>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success rounded-0">Login</button>
+            </div>
+            <a class="ml-4" asp-action="register" asp-controller="account">Don't have an account? Register here</a>
+            <a class="ml-4" asp-action="forgotpassword" asp-controller="account">Forgot Password</a>
+        </div>
+    </form>
+</body>
+</html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+   }

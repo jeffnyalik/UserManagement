@@ -1,0 +1,32 @@
+﻿.section {
+    background-color: #a7bcff;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-action {
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    border: 1px solid info;
+    border-left: 1px solid rgb(60, 107, 161);
+    border-top: 1px solid rgb(60, 107, 161);
+    border-bottom: 1px solid rgb(60, 107, 161);
+    border-right: 1px solid rgb(60, 107, 161);
+    height: fit-content;
+}
+
+.reg_logo {
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+
+.img-logo {
+    border-radius: 100%;
+}
