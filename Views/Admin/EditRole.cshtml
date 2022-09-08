@@ -1,0 +1,50 @@
+﻿@model UserManagement.Models.ViewModels.EditRoleViewModel
+
+@{
+
+    ViewData["Title"] = "Edit Role";
+}
+
+
+<div class="row mt-5" style="display:flex; align-items:center; justify-content:center;">
+    <div class="col-md-4">
+        <form method="post" asp-action="EditRole" asp-controller="admin">
+            <div class="form-group">
+                <h4 class="text-info">Edit Role</h4>
+                <span asp-validation-summary="All" class="text-danger"></span>
+                <input type="text" asp-for="RoleName" class="form-control" placeholder="Roles Name" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+
+                <input type="hidden" asp-for="Id" class="form-control" disabled />
+                
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info btn-block rounded-0 btn-sm">Update Role</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h4>Users in this  role</h4>
+                </div>
+                <div class="card-body">
+                    @if(Model.Users.Any())
+                    {
+                        foreach(var user in Model.Users)
+                        {
+                            <h5 class="card-title">@user</h5>
+                        }
+                        
+                    }
+                    else
+                    {
+                        <h5>No users at the moment</h5>
+                    }
+                </div>
+                <div class="card-footer">
+                   <a class="btn btn-primary btn-sm rounded-0 text-white ml-lg-5" style="width:auto">Add Users</a>
+                   <a class="btn btn-danger btn-sm rounded-0 text-white ml-lg-5" style="width:auto">Remove Users</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
