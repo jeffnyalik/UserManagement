@@ -7,5 +7,6 @@ namespace UserManagement.Models
     {
         [Required]
         public string Name { get; set; }
+        
     }
 }

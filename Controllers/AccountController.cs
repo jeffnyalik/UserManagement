@@ -74,18 +74,20 @@ namespace UserManagement.Controllers
                 var result = await _userManager.CreateAsync(user, registerViewModel.Password);
                 if (result.Succeeded)
                 {
+                    //Asgin new user default role
+                    await _userManager.AddToRoleAsync(user, "User");
                     //Generate token for email confirmation
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
                     //generate confirmation lin with URL
-                    var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, token = token }, Request.Scheme);
+                    //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, token = token }, Request.Scheme);
                     //_logger.Log(LogLevel.Warning, confirmationLink);
 
-                    await _mailSender.SendEmailAsync(
-                       registerViewModel.Email,
-                       "Confirm you Account-Identity Manager",
-                       "Please activate your Account by clicking here: <a href= \"" + confirmationLink + "\">Link</a>"
-                    );
+                    //await _mailSender.SendEmailAsync(
+                    //   registerViewModel.Email,
+                    //   "Confirm you Account-Identity Manager",
+                    //   "Please activate your Account by clicking here: <a href= \"" + confirmationLink + "\">Link</a>"
+                    //);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     //return LocalRedirect(nameof(Login));
@@ -137,11 +139,17 @@ namespace UserManagement.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
-                if(user != null && !user.EmailConfirmed && (await _userManager.CheckPasswordAsync(user, loginViewModel.Password)))
-                {
-                    ModelState.AddModelError(string.Empty, "Email not confirmed");
-                    return View(loginViewModel);
-                }
+                //if(user != null && !user.EmailConfirmed && (await _userManager.CheckPasswordAsync(user, loginViewModel.Password)))
+                //{
+                //    ModelState.AddModelError(string.Empty, "Email not confirmed");
+                //    return View(loginViewModel);
+                //}
+
+                //if (user != null && (await _userManager.CheckPasswordAsync(user, loginViewModel.Password)))
+                //{
+                //    ModelState.AddModelError(string.Empty, "Email not confirmed");
+                //    return View(loginViewModel);
+                //}
 
                 //Otherwise proceed to login
                 var result = await _signInManager.PasswordSignInAsync(

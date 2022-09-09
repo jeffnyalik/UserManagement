@@ -23,5 +23,6 @@ namespace UserManagement.Models.ViewModels
 
         [Required]
         public string Name { get; set; }
+
     }
 }

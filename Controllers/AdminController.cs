@@ -107,6 +107,5 @@ namespace UserManagement.Controllers
                 return View(model);
             }
         }
-
     }
 }

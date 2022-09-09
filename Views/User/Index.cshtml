@@ -1,0 +1,36 @@
+﻿@model IEnumerable<UserManagement.Models.ViewModels.UserViewModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr class="bg-info text-white">
+            <th scope="col">UserName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody style="width:70%;">
+       @if(Model.Any())
+       {
+           @foreach(var user in Model)
+           {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@string.Join(", ", user.Roles.ToList())</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm rounded-0" asp-action="manageroles" asp-controller="user" asp-route-userId="@user.Id">ManageRoles</a>
+                    </td>
+                </tr>
+           }
+       }
+       else
+       {
+           <td class="text-center text-warning">No Users for now</td>
+       }
+    </tbody>
+</table>
