@@ -1,6 +1,6 @@
-# UserManagement Management System
+UserManagement Management System using AspNetCore Mvc, .NET 6 and SqlServer.
 
-## The app covers the following areas and functionalities:
+### The app covers the following areas and functionalities:
    
    1. User registration with Email Confirmation link.
    2. Forgot and Reset password via Email.
@@ -12,11 +12,11 @@
    8. User lockout functionality..
 
 
-## NB: Claims based authorization will depend on the scope and requirements of your application.
+### NB: Claims based authorization will depend on the scope and requirements of your application.
        The Same applies to Two factor and external authentication.
-## Edit User can be implemented later..feel free todo so.
+       Edit User can be implemented later..feel free todo so.
 
-## Below is a sample screenshot:
+### Below is a sample screenshot:
 
 
 ![](Images/addrole.png)
@@ -24,5 +24,8 @@
 ![](Images/manageroles.png)
 ![](Images/newuser.png)
 ![](Images/access-denied.png)
+
+
+Happy Coding and Cheers.
 
 
