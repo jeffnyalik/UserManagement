@@ -1,0 +1,84 @@
+﻿@model UserManagement.Models.ViewModels.AddUserViewModel
+@{
+    ViewData["Title"] = "Add New User";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/add_user.css" rel="stylesheet" />
+    <title>Add New User</title>
+</head>
+<body>
+    <section style="" class="add-user mt-lg-5">
+        <form asp-route-returnurl="@ViewData["ReturnUrl"]" role="form" class="forms">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <h6 class="text-info text-center mb-1">Add New User</h6>
+            <hr/>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" placeholder="Email Address"/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Username"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" placeholder="Enter Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>    
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    <h6 class="text-info">Select A Role</h6>
+                    @for (int i = 0; i < Model.Roles.Count; i++)
+                    {
+                        <div class="form-check-inline m-1">
+                            <input type="hidden" asp-for="@Model.Roles[i].RoleName" />
+                            <input asp-for="@Model.Roles[i].IsSelected" class="form-check-input" />
+                            <label class="form-check-label" asp-for="@Model.Roles[i].IsSelected">
+                                @Model.Roles[i].RoleName
+                            </label>
+                        </div>
+                    }
+                    <span asp-validation-for="Roles" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group mt-lg-2">
+                <button type="submit" class="btn btn-info rounded-0">Submit</button>
+            </div>
+        </form>
+    </section>
+   
+</body>
+</html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

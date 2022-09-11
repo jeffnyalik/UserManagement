@@ -35,6 +35,10 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 //Email Configuration
 builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration"));
 builder.Services.AddTransient<IMailSender, MailSender>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+});
 
 var app = builder.Build();
 
